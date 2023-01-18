@@ -16,6 +16,8 @@ const answers = document.querySelectorAll('.answer')
 const scorearea = document.querySelector('.scorearea')
 const showscore = document.querySelector('#showscore')
 const dark = document.getElementById('dark-moon')
+let isDarkMode = localStorage.getItem("dark") ? localStorage.getItem("dark") : false;
+isDarkMode && document.body.classList.add("dark-theme")
 let score = 0
 let qnumber = 0
 let correctAnswer
@@ -111,15 +113,32 @@ submit.addEventListener('click',() =>{
 });
 
 
-dark.onclick = function(){
-    document.body.classList.toggle("dark-theme")
-    if(document.body.classList.contains('dark-theme')){
-        dark.src = './images/sun.png'
-    }
-    else{
-        dark.src = './images/moon.png'
-    }
-}
+// dark.onclick = function(){
+//   document.body.classList.toggle("dark-theme")
+//   if(document.body.classList.contains('dark-theme')){
+//     dark.src = './images/sun.png'
+//     isDarkMode = true;
+//   }
+//   else{
+//     dark.src = './images/moon.png'
+//     isDarkMode = false;
+//   }
+//   console.log("hello")
+//     localStorage.setItem("dark", isDarkMode)
+// }
+dark.addEventListener("click", () => {
+  document.body.classList.toggle("dark-theme")
+  if(document.body.classList.contains('dark-theme')){
+    dark.src = './images/sun.png'
+    isDarkMode = true;
+  }
+  else{
+    dark.src = './images/moon.png'
+    isDarkMode = false;
+  }
+  console.log("hello")
+    localStorage.setItem("dark", isDarkMode)
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
